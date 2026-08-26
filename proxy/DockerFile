@@ -1,0 +1,9 @@
+# Using a lightweight, secure SOCKS5 proxy image
+FROM serjs/go-socks5-proxy:latest
+
+# Set proxy credentials (change these for security)
+ENV PROXY_USER=myuser
+ENV PROXY_PASSWORD=mypassword
+
+# Expose the default proxy port
+EXPOSE 1080
