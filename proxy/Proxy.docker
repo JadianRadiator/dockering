@@ -3,11 +3,12 @@ FROM ginuerzh/gost:latest
 # Install python3 to manage both processes
 RUN apk add --no-cache python3
 
-# Changed destination path to skip Docker's build cache layer
+# Copy our combined router script into the root
 COPY health.py /app_health.py
 
 EXPOSE 8080
 EXPOSE 10000
 
-# Execute the supervisor script directly
+# FIX: Wipe out the default image entrypoint so Python can run as the main process
+ENTRYPOINT []
 CMD ["python3", "/app_health.py"]
