@@ -1,10 +1,13 @@
 FROM ginuerzh/gost:latest
 
-ENTRYPOINT ["/bin/gost"]
+# Install python3 to run our health check web server
+RUN apk add --no-cache python3
 
-# -L=http://... handles your secure proxy on port 8080
-# -L=http://:10000 handles a completely open port just for Render's pings
-CMD ["-L=http://JadianRadiator:MaJiCkA@:8080", "-L=http://:10000"]
+# Copy the health check script into the container
+COPY health.py /health.py
 
 EXPOSE 8080
 EXPOSE 10000
+
+# Run the health web server in the background, and gost in the foreground
+CMD ["sh", "-c", "python3 /health.py & /bin/gost -L=http://JadianRadiator:MaJiCkA@:8080"]
