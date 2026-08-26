@@ -10,16 +10,17 @@ class HealthHandler(BaseHTTPRequestHandler):
         self.wfile.write(b"OK")
 
     def log_message(self, format, *args):
-        pass # Suppress log flooding from Render health probes
+        pass 
 
 def run_health_server():
     print("Health check web server active on port 10000...")
     HTTPServer(('0.0.0.0', 10000), HealthHandler).serve_forever()
 
 if __name__ == "__main__":
-    # 1. Fire up Render's health check server in a background thread
+    # Start Render's health monitoring responder thread
     threading.Thread(target=run_health_server, daemon=True).start()
     
-    # 2. Fire up Gost in the foreground process
     print("Launching Gost proxy engine on port 8080...")
-    subprocess.run(["/bin/gost", "-L=http://JadianRadiator:MaJiCkA@:8080"])
+    
+    # FIX: Separating the flag and value into distinct list elements
+    subprocess.run(["/bin/gost", "-L", "http://JadianRadiator:Majicka500akcijaM@:8080"])
