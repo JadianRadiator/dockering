@@ -3,11 +3,11 @@ FROM ginuerzh/gost:latest
 # Install python3 to manage both processes
 RUN apk add --no-cache python3
 
-# Copy our combined router script into the root
-COPY health.py /health.py
+# Changed destination path to skip Docker's build cache layer
+COPY health.py /app_health.py
 
 EXPOSE 8080
 EXPOSE 10000
 
 # Execute the supervisor script directly
-CMD ["python3", "/health.py"]
+CMD ["python3", "/app_health.py"]
