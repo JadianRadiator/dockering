@@ -1,9 +1,10 @@
-# Use a modern, multi-protocol proxy engine
 FROM ginuerzh/gost:latest
 
 ENTRYPOINT ["/bin/gost"]
 
-# Explicitly declare the scheme (http), credentials, and the bind port
-CMD ["-L=http://JadianRadiator:MaJiCkA@:8080"]
+# -L=http://... handles your secure proxy on port 8080
+# -L=http://:10000 handles a completely open port just for Render's pings
+CMD ["-L=http://JadianRadiator:MaJiCkA@:8080", "-L=http://:10000"]
 
 EXPOSE 8080
+EXPOSE 10000
