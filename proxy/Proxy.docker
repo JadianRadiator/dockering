@@ -1,0 +1,9 @@
+# Use a modern, multi-protocol proxy engine
+FROM ginuerzh/gost:latest
+
+# Configure an HTTP proxy with authentication
+# Replace 'myuser' and 'mypassword' with your credentials
+ENTRYPOINT ["/bin/gost"]
+CMD ["-L", "JadianRadiator:MaJiCkA#500AkCiJaM@:8080"]
+
+EXPOSE 8080
