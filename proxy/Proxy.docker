@@ -9,6 +9,9 @@ COPY health.py /app_health.py
 EXPOSE 8080
 EXPOSE 10000
 
-# FIX: Wipe out the default image entrypoint so Python can run as the main process
+# FIX: Create a symlink so /bin/gost points to the actual container binary location
+RUN ln -s /gost /bin/gost
+
+# Wipe out the default image entrypoint so Python can run as the main process
 ENTRYPOINT []
 CMD ["python3", "/app_health.py"]
