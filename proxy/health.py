@@ -20,7 +20,7 @@ if __name__ == "__main__":
     # Start Render's health monitoring responder thread
     threading.Thread(target=run_health_server, daemon=True).start()
     
-    print("Launching Gost proxy engine on port 8080...")
+    print("Launching Secured Gost HTTPS proxy engine on port 8080...")
     
-    # FIX: Separating the flag and value into distinct list elements
-    subprocess.run(["/bin/gost", "-L", "http://JadianRadiator:Majicka500akcijaM@:8080"])
+    # MODIFIED: Changed scheme from http:// to https:// to enable TLS
+    subprocess.run(["/bin/gost", "-L", "https://JadianRadiator:Majicka500akcijaM@:8080"])
