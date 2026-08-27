@@ -23,4 +23,4 @@ if __name__ == "__main__":
     print("Launching Secured Gost HTTPS proxy engine on port 8080...")
     
     # REVERTED TO http:// because Render handles the outer HTTPS/TLS termination for us
-    subprocess.run(["/gost", "-L", "http://JadianRadiator:Majicka500akcijaM@:8080"])
+    subprocess.run(["/bin/gost", "-L", "http://JadianRadiator:Majicka500akcijaM@:8080"])
