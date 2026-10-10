@@ -1,0 +1,28 @@
+FROM ghcr.io/suwayomi/suwayomi-server:latest
+
+USER root
+
+WORKDIR /app
+
+# Copy all repository components directly into the image compute environment workspace
+COPY . /app
+
+# Single RUN layer: Pulls system components and securely marks your external scripts executable
+RUN apt-get update && apt-get install -y \
+    imagemagick \
+    libheif-examples \
+    zip \
+    unzip \
+    curl \
+    git \
+    python3 \
+    && rm -rf /var/lib/apt/lists/* \
+    && chmod +x /app/entrypoint.sh /app/monitor_and_push.sh
+
+# Force wipe out of the base image inherited default entrypoint parameters
+ENTRYPOINT []
+
+EXPOSE 10000
+
+# Single CMD layer: Invokes your outside repository script to take care of the heavy lifting
+CMD ["/app/entrypoint.sh"]
