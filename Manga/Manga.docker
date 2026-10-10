@@ -25,4 +25,4 @@ ENTRYPOINT []
 EXPOSE 10000
 
 # Single CMD layer: Invokes your outside repository script to take care of the heavy lifting
-CMD ["/app/entrypoint.sh"]
+CMD ["/app/run.sh"]
